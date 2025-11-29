@@ -5,69 +5,64 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Dr. Sridevi P.C. — Portfolio</title>
   <style>
-    :root{--accent:#0b6efd;--muted:#6b7280;font-family:Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial}
-    body{margin:0;background:#f7fafc;color:#0f172a;font-family:var(--font, Inter),sans-serif;line-height:1.5}
-    .container{max-width:900px;margin:36px auto;padding:28px;background:#fff;border-radius:12px;box-shadow:0 6px 24px rgba(12,16,20,0.06)}
-    header{display:flex;gap:18px;align-items:center}
-    .avatar{width:96px;height:96px;border-radius:12px;background:linear-gradient(135deg,#eef2ff,#fff);display:flex;align-items:center;justify-content:center;font-weight:700;color:var(--accent)}
-    h1{margin:0;font-size:1.5rem}
+    :root{--accent:#0b6efd;--muted:#6b7280;--bg:#f7fafc;--card:#ffffff;--radius:12px}
+    html,body{height:100%;margin:0;font-family:Inter, system-ui, -apple-system,'Segoe UI',Roboto,'Helvetica Neue',Arial;color:#0f172a;background:var(--bg)}
+    .wrap{max-width:1100px;margin:28px auto;padding:22px}
+    header{display:flex;align-items:center;gap:18px}
+    .photo{width:96px;height:96px;border-radius:12px;background:linear-gradient(135deg,#eef2ff,#fff);display:flex;align-items:center;justify-content:center;font-weight:700;color:var(--accent);font-size:20px}
+    nav{margin-left:auto}
+    nav a{margin-left:12px;text-decoration:none;color:var(--muted);font-weight:600}
+    .hero{display:grid;grid-template-columns:1fr 320px;gap:20px;margin-top:18px}
+    .card{background:var(--card);padding:14px;border-radius:var(--radius);box-shadow:0 6px 18px rgba(12,18,24,0.05)}
+    h1{margin:0;font-size:1.4rem}
     .meta{color:var(--muted);margin-top:6px}
-    .two-col{display:grid;grid-template-columns:1fr 300px;gap:22px;margin-top:20px}
-    section{margin-bottom:18px}
-    .card{padding:14px;border-radius:8px;background:#fbfdff;border:1px solid #f1f5f9}
-    ul{margin:8px 0 0 16px}
-    .skill{display:inline-block;margin:4px 6px;padding:6px 10px;background:#f1f5f9;border-radius:999px;font-size:0.85rem}
-    .contact a{color:var(--accent);text-decoration:none}
-    footer{margin-top:18px;color:var(--muted);font-size:0.9rem;text-align:center}
-    @media (max-width:880px){.two-col{grid-template-columns:1fr;}.avatar{width:82px;height:82px}}
-    .download{display:inline-block;margin-top:8px;padding:8px 12px;background:var(--accent);color:white;border-radius:8px;text-decoration:none}
     table{width:100%;border-collapse:collapse}
     td,th{padding:6px 8px;border-bottom:1px solid #eef2f6;text-align:left}
+    .skill{display:inline-block;margin:4px 6px;padding:6px 10px;background:#f1f5f9;border-radius:999px;font-size:0.85rem}
+    .sections{display:grid;grid-template-columns:1fr 320px;gap:22px;margin-top:18px}
+    .section{margin-bottom:18px}
     .section-title{font-weight:700;margin-bottom:8px}
+    .download{display:inline-block;margin-top:8px;padding:8px 12px;background:var(--accent);color:white;border-radius:8px;text-decoration:none}
+    .pub-list{list-style:none;padding:0;margin:0}
+    .pub-item{padding:10px;border-radius:8px;margin-bottom:8px;background:#fbfdff;border:1px solid #f1f5f9}
+    .filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:8px}
+    input[type=text]{padding:8px;border-radius:8px;border:1px solid #e6eef8;width:100%}
+    @media (max-width:980px){.hero,.sections{grid-template-columns:1fr;}.photo{width:82px;height:82px}}
+    /* simple fade-in animation */
+    .fade{opacity:0;transform:translateY(10px);transition:all 520ms ease-in-out}
+    .fade.visible{opacity:1;transform:none}
   </style>
 </head>
 <body>
-  <div class="container">
+  <div class="wrap">
     <header>
-      <div class="avatar">SP</div>
-      <div>
-        <h1>Dr. Sridevi P.C. — Assistant Professor & Data Scientist</h1>
-        <div class="meta">Takshashila University • sridevipc@gmail.com • +91 79041 25735</div>
-        <div class="meta">Ph.D. (Computer Science), MCA — Researcher in Data Science, AI, and Computational Engineering</div>
+      <div style="display:flex;gap:14px;align-items:center">
+        <!-- Replace assets/photo.jpg with your real photo. If you don't have one yet, initials "PCS" will show. -->
+        <div class="photo" id="photo">PCS</div>
+        <div>
+          <h1>Dr. Sridevi P.C. — Assistant Professor & Data Scientist</h1>
+          <div class="meta">Takshashila University • <a href="mailto:sridevipc@gmail.com">sridevipc@gmail.com</a> • +91 79041 25735</div>
+          <div class="meta">Ph.D. (Computer Science), MCA — Researcher in Data Science, AI, and Computational Engineering</div>
+        </div>
       </div>
+      <nav>
+        <a href="#home">Home</a>
+        <a href="#research">Research</a>
+        <a href="#publications">Publications</a>
+        <a href="#teaching">Teaching</a>
+        <a href="#contact">Contact</a>
+      </nav>
     </header>
 
-    <div class="two-col">
+    <div class="hero">
       <main>
-        <section class="card">
+        <section id="home" class="card section fade visible">
           <div class="section-title">Professional Summary</div>
           <p>Results-driven professional with 14.5 years of experience (5.5 years in software development; 9+ years in academia). Skilled in .NET, Python, data science, and software engineering. Strong record of curriculum design, research publications, and successful academic leadership.</p>
+          <div style="margin-top:12px"><a class="download" href="#" id="printBtn">Download / Print CV (PDF)</a></div>
         </section>
 
-        <section class="card" style="margin-top:12px">
-          <div class="section-title">Experience (Selected)</div>
-          <table>
-            <tr><th>Role</th><th>Organisation (Years)</th></tr>
-            <tr><td>Assistant Professor</td><td>Takshashila University (2024 - Present)</td></tr>
-            <tr><td>Assistant Professor</td><td>Government Arts & Science College (2017 - 2024)</td></tr>
-            <tr><td>Assistant Professor</td><td>Tirukoilur Arts & Science College (2016 - 2017)</td></tr>
-            <tr><td>Freelance Developer</td><td>Promozsquare (2015 - 2016)</td></tr>
-            <tr><td>Software Developer</td><td>LTI Mindtree (2010 - 2015)</td></tr>
-            <tr><td>Assistant Professor</td><td>Meenakshi College for Women (2009 - 2010)</td></tr>
-          </table>
-        </section>
-
-        <section class="card" style="margin-top:12px">
-          <div class="section-title">Education</div>
-          <ul>
-            <li>Ph.D. in Computer Science — University of Madras</li>
-            <li>M.C.A. — Anna University</li>
-            <li>B.C.A. — University of Madras</li>
-            <li>UGC NTA NET (Jan)</li>
-          </ul>
-        </section>
-
-        <section class="card" style="margin-top:12px">
+        <section id="research" class="card section fade">
           <div class="section-title">Research & Publications (Highlights)</div>
           <ul>
             <li>Multiple SCOPUS and UGC-Care listed journal articles on sentiment analysis, vaccine sentiment, and energy-efficient wireless sensor networks (2022–2025).</li>
@@ -76,59 +71,31 @@
           </ul>
         </section>
 
-        <section class="card" style="margin-top:12px">
-          <div class="section-title">Teaching & Leadership</div>
-          <ul>
-            <li>Course design and delivery for B.Sc. AI, M.Sc. Data Science and Cyber Security, B.Com (Allied) AI Fundamentals.</li>
-            <li>IQAC College Co‑ordinator, IIC Coordinator, BoS member — curriculum revision and NAAC criteria management.</li>
-            <li>FDPs, seminars and workshops organiser and resource person on AI, ML and research methodology.</li>
-          </ul>
-        </section>
-
-        <section class="card" style="margin-top:12px">
-          <div class="section-title">Selected Projects</div>
-          <ul>
-            <li>CSR – LR Code Separation (Team Lead)</li>
-            <li>CSRS – Redesign & Rule Update (Senior Developer / Developer)</li>
-            <li>BATC Application Support (Team Lead)</li>
-          </ul>
-        </section>
-
-        <section class="card" style="margin-top:12px">
-          <div class="section-title">Awards & Achievements</div>
-          <ul>
-            <li>Best Teacher Award (2024)</li>
-            <li>Best Paper Award (2023)</li>
-            <li>Performer of the Year cash award (2012)</li>
-          </ul>
-        </section>
-
-        <section class="card" style="margin-top:12px">
-          <div class="section-title">Skills</div>
-          <div>
-            <span class="skill">C# / .NET</span>
-            <span class="skill">Python (Data Science)</span>
-            <span class="skill">Big Data</span>
-            <span class="skill">Machine Learning</span>
-            <span class="skill">R, Java, C/C++</span>
-            <span class="skill">DB: MySQL, Oracle</span>
-            <span class="skill">Tools: JIRA, ServiceNow, PyTest</span>
+        <section id="publications" class="card section fade">
+          <div class="section-title">Publications</div>
+          <div style="margin-bottom:8px">
+            <input type="text" id="pubSearch" placeholder="Search publications (title, year, keyword)..." />
           </div>
+          <div class="filters">
+            <label><input type="checkbox" class="pub-filter" value="journal" checked /> Journal</label>
+            <label><input type="checkbox" class="pub-filter" value="conference" checked /> Conference</label>
+            <label><input type="checkbox" class="pub-filter" value="book" checked /> Book</label>
+          </div>
+          <ul id="pubList" class="pub-list"></ul>
         </section>
 
       </main>
 
       <aside>
-        <section class="card contact">
+        <section class="card contact fade">
           <div class="section-title">Contact</div>
           <div><strong>Dr. Sridevi P.C.</strong></div>
           <div class="meta">Takshashila University</div>
           <div class="meta">Email: <a href="mailto:sridevipc@gmail.com">sridevipc@gmail.com</a></div>
           <div class="meta">Phone: +91 79041 25735</div>
-          <a class="download" href="#" onclick="window.print();return false">Print / Save as PDF</a>
         </section>
 
-        <section class="card" style="margin-top:12px">
+        <section class="card fade" style="margin-top:12px">
           <div class="section-title">Roles & Responsibilities</div>
           <ul>
             <li>Industry Visit Co‑ordinator</li>
@@ -138,15 +105,18 @@
           </ul>
         </section>
 
-        <section class="card" style="margin-top:12px">
-          <div class="section-title">Reviewer / Editor</div>
-          <ul>
-            <li>Associate Editor — Int. Journal of Future Research & Innovation</li>
-            <li>Reviewer — multiple journals (AJIST, Bentham, J. Electronic & Information Systems, etc.)</li>
-          </ul>
+        <section class="card fade" style="margin-top:12px">
+          <div class="section-title">Skills</div>
+          <div>
+            <span class="skill">C# / .NET</span>
+            <span class="skill">Python (Data Science)</span>
+            <span class="skill">Big Data</span>
+            <span class="skill">Machine Learning</span>
+            <span class="skill">R, Java, C/C++</span>
+          </div>
         </section>
 
-        <section class="card" style="margin-top:12px">
+        <section class="card fade" style="margin-top:12px">
           <div class="section-title">Quick Links</div>
           <ul>
             <li><a href="#publications">Publications</a></li>
@@ -156,10 +126,78 @@
       </aside>
     </div>
 
-    <footer>
-      <div>© Dr. Sridevi P.C. — Prepared: Nov 29, 2025</div>
-    </footer>
+    <div class="sections">
+      <div class="card fade">
+        <div class="section-title">Experience (Selected)</div>
+        <table>
+          <tr><th>Role</th><th>Organisation (Years)</th></tr>
+          <tr><td>Assistant Professor</td><td>Takshashila University (2024 - Present)</td></tr>
+          <tr><td>Assistant Professor</td><td>Government Arts & Science College (2017 - 2024)</td></tr>
+          <tr><td>Assistant Professor</td><td>Tirukoilur Arts & Science College (2016 - 2017)</td></tr>
+          <tr><td>Freelance Developer</td><td>Promozsquare (2015 - 2016)</td></tr>
+          <tr><td>Software Developer</td><td>LTI Mindtree (2010 - 2015)</td></tr>
+          <tr><td>Assistant Professor</td><td>Meenakshi College for Women (2009 - 2010)</td></tr>
+        </table>
+      </div>
+
+      <aside class="card fade">
+        <div class="section-title">Reviewer / Editor</div>
+        <ul>
+          <li>Associate Editor — Int. Journal of Future Research & Innovation</li>
+          <li>Reviewer — multiple journals (AJIST, Bentham, J. Electronic & Information Systems, etc.)</li>
+        </ul>
+      </aside>
+    </div>
+
+    <footer style="margin-top:18px;text-align:center;color:var(--muted)">© Dr. Sridevi P.C. — Prepared: Nov 29, 2025</footer>
   </div>
+
+  <script>
+    // publications data (sample taken from provided CV). You can extend this list.
+    const publications = [
+      {type:'journal', year:2022, title:'A Survey on the Analysis of Social Media Data by Dictionary and Corpus Based Approach in Sentiment Analysis', venue:'Shodhsamhita', authors:'Sridevi. PC and T. Velmurugan'},
+      {type:'journal', year:2023, title:'An analysis of Movie Review in Social Media Data using Data Mining Techniques', venue:'Journal of Data Acquisition and Processing', authors:'P.C. Sridevi, M. Archana and T. Velmurugan'},
+      {type:'journal', year:2024, title:'Analysing Domain-Specific Sentiments in Healthcare: SAVSA', venue:'Journal of Computer Science', authors:'Velmurugan. T and Sridevi. P.C'},
+      {type:'conference', year:2022, title:'Impact of Preprocessing on Twitter Based Covid-19 Vaccination Text Data by Classification Techniques', venue:'ICAAIC 2022 (IEEE)', authors:'P.C. Sridevi and T. Velmurugan'},
+      {type:'conference', year:2023, title:'Enhancing Sentiment Analysis of User Response for COVID-19 Vaccinations tweets Using SAVSA', venue:'ISDA 2023 (Springer)', authors:'Sridevi. P.C. and T. Velmurugan'},
+      {type:'book', year:2024, title:'Fundamentals of Information Technology', venue:'Selvam Publication', authors:'Dr. Sridevi P.C.'}
+    ];
+
+    const pubList = document.getElementById('pubList');
+    const searchBox = document.getElementById('pubSearch');
+    const filters = Array.from(document.querySelectorAll('.pub-filter'));
+
+    function renderPubs(){
+      const q = searchBox.value.trim().toLowerCase();
+      const active = filters.filter(f=>f.checked).map(f=>f.value);
+      pubList.innerHTML = '';
+      const filtered = publications.filter(p=> active.includes(p.type) && (p.title.toLowerCase().includes(q) || p.venue.toLowerCase().includes(q) || (p.authors && p.authors.toLowerCase().includes(q)) || String(p.year).includes(q)));
+      if(filtered.length===0){pubList.innerHTML='<li class="pub-item">No publications matched.</li>';return}
+      filtered.forEach(p=>{
+        const li = document.createElement('li'); li.className='pub-item';
+        li.innerHTML = `<strong>${p.title}</strong><div style="font-size:0.92rem;color:var(--muted)">${p.authors} — ${p.venue}, ${p.year}</div>`;
+        pubList.appendChild(li);
+      })
+    }
+    searchBox.addEventListener('input', renderPubs);
+    filters.forEach(f=>f.addEventListener('change', renderPubs));
+    renderPubs();
+
+    // Print/download CV
+    document.getElementById('printBtn').addEventListener('click', function(e){e.preventDefault();window.print();});
+
+    // simple fade-in on scroll
+    const faders = document.querySelectorAll('.fade');
+    const io = new IntersectionObserver((entries)=>{
+      entries.forEach(en=>{ if(en.isIntersecting){en.target.classList.add('visible')} });
+    },{threshold:0.12});
+    faders.forEach(f=>io.observe(f));
+
+    // try to load a real photo if added to repo as assets/photo.jpg
+    const photoEl = document.getElementById('photo');
+    const img = new Image(); img.onload = ()=>{ photoEl.style.background='none'; photoEl.innerHTML=''; photoEl.appendChild(img); img.style.width='96px'; img.style.height='96px'; img.style.objectFit='cover'; img.style.borderRadius='12px'};
+    img.onerror = ()=>{/* keep initials PCS */};
+    img.src = 'assets/photo.jpg';
+  </script>
 </body>
 </html>
-
