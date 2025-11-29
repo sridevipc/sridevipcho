@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Publications – Dr. Sridevi P.C.</title>
+<style>
+  body {font-family: Inter, system-ui, sans-serif; background:#f7fafc; margin:0; padding:0; color:#0f172a;}
+  .wrap {max-width: 900px; margin: 32px auto; padding: 22px; background:white; border-radius:12px; box-shadow:0 4px 18px rgba(0,0,0,0.07);}
+  h1 {margin-top:0; font-size:1.8rem;}
+  .meta {color:#6b7280; margin-bottom:18px;}
+  .search-box {margin:12px 0;}
+  input[type=text] {width:100%; padding:10px; border-radius:8px; border:1px solid #d4d7dd;}
+  .filters {display:flex; gap:12px; margin:12px 0;}
+  .pub-item {padding:12px; background:#f9fbff; border:1px solid #e6edf5; border-radius:8px; margin-bottom:10px;}
+  .back {display:inline-block; margin-bottom:14px; text-decoration:none; color:#0b6efd; font-weight:600;}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <a class="back" href="index.html">← Back to Portfolio</a>
+  <h1>Publications</h1>
+  <div class="meta">Dr. Sridevi P.C. — Assistant Professor, Takshashila University</div>
+
+  <div class="search-box">
+    <input type="text" id="pubSearch" placeholder="Search by title, year, venue, author..." />
+  </div>
+
+  <div class="filters">
+    <label><input type="checkbox" class="pub-filter" value="journal" checked> Journal</label>
+    <label><input type="checkbox" class="pub-filter" value="conference" checked> Conference</label>
+    <label><input type="checkbox" class="pub-filter" value="book" checked> Book</label>
+  </div>
+
+  <div id="pubList"></div>
+</div>
+
+<script>
+const publications = [
+  {type:'journal', year:2022, title:'A Survey on the Analysis of Social Media Data by Dictionary and Corpus Based Approach in Sentiment Analysis', venue:'Shodhsamhita', authors:'Sridevi P.C. & T. Velmurugan'},
+  {type:'journal', year:2023, title:'An analysis of Movie Review in Social Media Data using Data Mining Techniques', venue:'Journal of Data Acquisition and Processing', authors:'P.C. Sridevi et al.'},
+  {type:'journal', year:2024, title:'Analysing Domain-Specific Sentiments in Healthcare (SAVSA)', venue:'Journal of Computer Science', authors:'T. Velmurugan & P.C. Sridevi'},
+  {type:'journal', year:2024, title:'COVID-19 Vaccination Sentiment Using SenticNet-7 + VADER', venue:'IJCISI', authors:'P.C. Sridevi & T. Velmurugan'},
+  {type:'journal', year:2024, title:'Hybrid SAVSA for COVID-19 Vaccination Tweets', venue:'ISDA (Springer)', authors:'P.C. Sridevi & T. Velmurugan'},
+  {type:'journal', year:2024, title:'Sentiment Analysis For Music Instruments Reviews', venue:'Fuzzy Systems & Soft Computing', authors:'Jayabharathi et al.'},
+  {type:'journal', year:2025, title:'Energy-Efficient WSN Perspectives', venue:'IJANA', authors:'P.C. Sridevi et al.'},
+
+  {type:'book', year:2024, title:'Fundamentals of Information Technology', venue:'Selvam Publication', authors:'P.C. Sridevi'},
+
+  {type:'conference', year:2017, title:'Information Overloading – Software Agent Solution', venue:'National Conference', authors:'Sridevi P.C. & Deivanayaki'},
+  {type:'conference', year:2017, title:'AI Applications in Libraries', venue:'National Conference', authors:'Sridevi P.C.'},
+  {type:'conference', year:2018, title:'Spam Detection Approaches – Survey', venue:'IoT Conference', authors:'Sridevi P.C. & Vijayalakshmi'},
+  {type:'conference', year:2022, title:'Impact of Preprocessing on COVID-19 Twitter Data', venue:'IEEE ICAAIC 2022', authors:'P.C. Sridevi & T. Velmurugan'},
+  {type:'conference', year:2023, title:'Classification Methods for Sentiment Analysis', venue:'ISIITA Bangkok', authors:'P.C. Sridevi et al.'},
+  {type:'conference', year:2023, title:'COVID-19 Vaccination Stance Analysis', venue:'ICISCA 2023', authors:'P.C. Sridevi & T. Velmurugan'},
+  {type:'conference', year:2023, title:'Hybrid SAVSA System', venue:'ISDA 2023', authors:'P.C. Sridevi & T. Velmurugan'},
+  {type:'conference', year:2024, title:'BERT + Rule-based Sentiment Framework', venue:'ISIITA Philippines', authors:'P.C. Sridevi & T. Velmurugan'},
+  {type:'conference', year:2024, title:'GPT Empowered Twitter Vaccination Sentiment', venue:'ISIITA Philippines', authors:'P.C. Sridevi et al.'},
+  {type:'conference', year:2024, title:'Kappa Statistics Sentiment Model Eval', venue:'ICISCA 2024', authors:'P.C. Sridevi & T. Velmurugan'},
+  {type:'conference', year:2024, title:'Aspect-Based Real-time Mining', venue:'ICSCAN 2024', authors:'S.J.R & P.C. Sridevi'},
+  {type:'conference', year:2025, title:'Space Debris Descriptive Analytics', venue:'Taipei Conference', authors:'P.C. Sridevi et al.'},
+  {type:'conference', year:2025, title:'Phylogenetic Classification ML', venue:'Takshashila Research Summit', authors:'P.C. Sridevi'},
+  {type:'conference', year:2025, title:'Decentralized Finance (DeFi) Platform', venue:'Takshashila Research Summit', authors:'P.C. Sridevi'},
+  {type:'conference', year:2025, title:'Hybrid LSTM Vaccination Sentiment', venue:'Takshashila Research Summit', authors:'P.C. Sridevi'},
+  {type:'conference', year:2025, title:'Post-Quantum Cryptography Security', venue:'Takshashila Research Summit', authors:'P.C. Sridevi'}
+];
+
+const pubList = document.getElementById('pubList');
+const searchBox = document.getElementById('pubSearch');
+const filters = Array.from(document.getElementsByClassName('pub-filter'));
+
+function render() {
+  const q = searchBox.value.toLowerCase();
+  const active = filters.filter(f => f.checked).map(f => f.value);
+  pubList.innerHTML = '';
+
+  const filtered = publications.filter(p =>
+    active.includes(p.type) &&
+    (p.title.toLowerCase().includes(q) || p.venue.toLowerCase().includes(q) || p.authors.toLowerCase().includes(q) || String(p.year).includes(q))
+  );
+
+  if (!filtered.length) {
+    pubList.innerHTML = '<div>No matching publications.</div>';
+    return;
+  }
+
+  filtered.forEach(p => {
+    const div = document.createElement('div');
+    div.className = 'pub-item';
+    div.innerHTML = `<strong>${p.title}</strong><br><span style="color:#6b7280">${p.authors} — ${p.venue}, ${p.year}</span>`;
+    pubList.appendChild(div);
+  });
+}
+
+searchBox.addEventListener('input', render);
+filters.forEach(f => f.addEventListener('change', render));
+render();
+</script>
+</body>
+</html>
